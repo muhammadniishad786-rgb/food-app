@@ -36,7 +36,8 @@ function Cart() {
     0,
   );
 
-  console.log(subtotal);
+       console.log(state);
+
   
 
   return (
@@ -111,7 +112,12 @@ function Cart() {
                 </div>
 
                 {/* Delete */}
-                <button className="text-red-500 hover:bg-red-50 p-3 rounded-full">
+                <button 
+                onClick={() => dispatch({
+                    type: "REMOVE_FROM_CART",
+                    payload: food.idMeal
+                })}
+                className="text-red-500 hover:bg-red-50 p-3 rounded-full">
                   <Trash2 size={22} />
                 </button>
               </div>

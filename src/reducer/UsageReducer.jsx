@@ -30,8 +30,10 @@ export const UsageReducer = (state, action) => {
           },
         ],
       };
+      
     }
 
+    // this for the quantity changing in the cart page
     case "INCREASE_QUANTITY":
       return {
         ...state,
@@ -55,7 +57,17 @@ export const UsageReducer = (state, action) => {
         ),
       };
 
+    case "REMOVE_FROM_CART" :
+        return{
+            ...state,
+            cart: state.cart.filter((items) => items.idMeal !== action.payload)
+            
+        }
+        
     default:
       return state;
   }
+
+
+  
 };
