@@ -1,15 +1,28 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { useForm } from "react-hook-form";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
+  const { register, handleSubmit } = useForm();
+
   const navigate = useNavigate();
 
-  const onhandleSubmit = () => {
-    localStorage.setItem("token", "LoggedIn");
-    navigate("/");
+  const onsubmit = (data) => {
+    const users = JSON.parse(localStorage.getItem("users"));
+
+    const user = users.find((user) => {
+      return data.email === user.email && data.password === user.password;
+    });
+
+    if (user) {
+      localStorage.setItem("token", "LoggedIn");
+      navigate("/");
+    } else {
+      alert("invalid email or password");
+    }
   };
 
   return (
@@ -41,7 +54,7 @@ function Login() {
             Enter your credentials to continue.
           </p>
 
-          <form className="mt-10 space-y-6">
+          <form className="mt-10 space-y-6" onSubmit={handleSubmit(onsubmit)}>
             {/* Email */}
             <div className="relative">
               <Mail
@@ -52,6 +65,9 @@ function Login() {
               <input
                 type="email"
                 placeholder="Email Address"
+                {...register("email", {
+                  required: "email required",
+                })}
                 className="w-full border border-gray-300 rounded-xl pl-12 pr-4 py-4 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition"
               />
             </div>
@@ -66,6 +82,12 @@ function Login() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
+                {...register("password", {
+                  minLength: {
+                    value: 8,
+                    message: "minimum 8 charecters",
+                  },
+                })}
                 className="w-full border border-gray-300 rounded-xl pl-12 pr-12 py-4 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition"
               />
 
@@ -96,7 +118,7 @@ function Login() {
             {/* Login Button */}
 
             <button
-              onClick={onhandleSubmit}
+              type="submit"
               className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-xl font-semibold transition duration-300"
             >
               Login
