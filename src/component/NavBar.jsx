@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Menu,
   X,
@@ -6,9 +6,15 @@ import {
   Search,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom"
+import { CountContext } from "../context/CartContext";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const {state} = useContext(CountContext)
+//   console.log(state.cart.length);
+  
+  
 
   const isLoggedIn = localStorage.getItem("token");
 
@@ -19,6 +25,8 @@ function Navbar() {
     navigate("/login")
   }
 
+
+  
 
 
   return (
@@ -44,27 +52,26 @@ function Navbar() {
         {/* Desktop Menu */}
         <nav className="hidden lg:flex items-center gap-10">
 
-          <a
-            href="#"
+          <Link
+            to={'/'}
             className="text-gray-700 hover:text-orange-500 font-medium transition"
           >
             Home
-          </a>
+          </Link>
 
-          <a
-            href="#"
+          <Link
+            to={'/foodcard'}
             className="text-gray-700 hover:text-orange-500 font-medium transition"
           >
             Menu
-          </a>
+          </Link>
 
-          <a
-            href="#"
+          <Link
+            to={'/catogery'}
             className="text-gray-700 hover:text-orange-500 font-medium transition"
           >
-            Categories
-          </a>
-
+            Category
+          </Link>
           <a
             href="#"
             className="text-gray-700 hover:text-orange-500 font-medium transition"
@@ -89,13 +96,16 @@ function Navbar() {
           </button>
 
           {/* Cart */}
-          <button className="relative h-11 w-11 rounded-full border hover:bg-orange-500 hover:text-white transition flex items-center justify-center">
-            <ShoppingCart size={20} />
+           <Link to={'/cart'}>
+          <button 
+           className="relative h-11 w-11 rounded-full border hover:bg-orange-500 hover:text-white transition flex items-center justify-center">
+           <ShoppingCart size={20} /> 
 
             <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
-              2
+              {state.cart.length}
             </span>
           </button>
+          </Link>
 
           {/* Login */}
          {isLoggedIn ? (

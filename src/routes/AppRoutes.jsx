@@ -3,12 +3,13 @@ import { Routes, Route } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout'
 import Hero from '../pages/Hero'
 import Category from '../pages/Category'
-import FoodCards from '../pages/FoodCard'
+import FoodCards from '../component/FoodCard'
 import Home from '../pages/Home'
 import Register from '../pages/authentication/Register'
 import Login from '../pages/authentication/Login'
 import AuthLayout from '../layouts/AuthLayout'
 import ProtectedRoute from './ProtectedRoute'
+import Cart from '../pages/Cart'
 
 function AppRoutes() {
   return (
@@ -18,8 +19,9 @@ function AppRoutes() {
         <Route element={<ProtectedRoute />} >
         <Route path='/' element={<MainLayout />}>
          <Route index element={<Home /> } />
-         <Route path="category" element={<Category /> } />
+         <Route path="catogery" element={<Category /> } />
          <Route path="foodcard" element={<FoodCards />} />
+         <Route path="cart" element={<Cart />} />
         </Route>
         </Route>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import Category from './Category'
-import FoodCards from './FoodCard'
+import FoodCards from '../component/FoodCard'
 import Hero from './Hero'
 
 function Home() {
