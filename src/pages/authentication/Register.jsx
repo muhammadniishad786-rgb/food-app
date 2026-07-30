@@ -1,9 +1,31 @@
 import { useState } from "react";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate()
+
+  const {register, handleSubmit, reset} = useForm()
+  const onsubmit = (data) => {
+    if(data.confirmPassword !== data.password){
+        alert("password and confirm password are not same");
+        return;
+    }
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    users.push(data);
+
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("registered Successfully")
+
+    navigate("/login")
+
+    reset();
+  }
 
   return (
     <section className="min-h-screen bg-orange-50 flex items-center justify-center px-5 py-10">
@@ -42,7 +64,7 @@ function Register() {
             Register to start ordering your favourite meals.
           </p>
 
-          <form className="mt-10 space-y-6">
+          <form className="mt-10 space-y-6" onSubmit={handleSubmit(onsubmit)}>
 
             {/* Name */}
             <div className="relative">
@@ -56,6 +78,9 @@ function Register() {
                 type="text"
                 placeholder="Full Name"
                 className="w-full border border-gray-300 rounded-xl pl-12 pr-4 py-4 outline-none focus:border-orange-500"
+                {...register("username",{
+                    required: "User Name Required"
+                })}
               />
 
             </div>
@@ -66,12 +91,16 @@ function Register() {
               <Mail
                 size={20}
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+
               />
 
               <input
                 type="email"
                 placeholder="Email Address"
                 className="w-full border border-gray-300 rounded-xl pl-12 pr-4 py-4 outline-none focus:border-orange-500"
+                {...register("email", {
+                    required: "email Required"
+                })}
               />
 
             </div>
@@ -88,6 +117,12 @@ function Register() {
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 className="w-full border border-gray-300 rounded-xl pl-12 pr-12 py-4 outline-none focus:border-orange-500"
+                {...register("password", {
+                    minLength: {
+                        value: 8,
+                        message: "minimum 8 charecters"
+                    }
+                })}
               />
 
               <button
@@ -112,6 +147,9 @@ function Register() {
                 type="password"
                 placeholder="Confirm Password"
                 className="w-full border border-gray-300 rounded-xl pl-12 pr-4 py-4 outline-none focus:border-orange-500"
+               {...register("confirmPassword", {
+                    required: "enter the passsword again"
+                })}
               />
 
             </div>
@@ -129,7 +167,9 @@ function Register() {
             </label>
 
             {/* Register Button */}
-            <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-xl font-semibold transition">
+            <button 
+            type="submit"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-xl font-semibold transition">
               Create Account
             </button>
 

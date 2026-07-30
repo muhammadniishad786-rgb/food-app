@@ -5,9 +5,21 @@ import {
   ShoppingCart,
   Search,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+
+  const isLoggedIn = localStorage.getItem("token");
+
+  const navigate = useNavigate()
+  
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login")
+  }
+
+
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200">
@@ -86,9 +98,20 @@ function Navbar() {
           </button>
 
           {/* Login */}
-          <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2.5 rounded-full font-medium transition">
-            Login
-          </button>
+         {isLoggedIn ? (
+  <button
+    onClick={handleLogout}
+    className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-medium transition"
+  >
+    Logout
+  </button>
+) : (
+  <button
+    className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-medium transition"
+  >
+    Login
+  </button>
+)}
 
         </div>
 
@@ -137,9 +160,18 @@ function Navbar() {
               Cart (2)
             </button>
 
-            <button className="bg-orange-500 text-white py-3 rounded-full">
+            {isLoggedIn ? (  
+              <button className="bg-orange-500 text-white py-3 rounded-full">
               Login
+            </button> ) : (
+                <button 
+                onClick={handleLogout}
+                className="bg-orange-500 text-white py-3 rounded-full">
+              Logout
             </button>
+            )
+            }
+            
 
           </div>
         </div>
