@@ -6,12 +6,12 @@ import FoodCards from './component/FoodCard'
 import Footer from './component/Footer'
 import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './routes/AppRoutes'
-import { getMeal } from './api/mealAPI'
+import { getMealBySeach } from './api/mealAPI'
 import {CartContext} from './context/CartContext'
 
 function App() {
   useEffect(() => {
-    getMeal("pizza")
+    getMealBySeach("pizza")
   }, [])
   return (
     <CartContext>
