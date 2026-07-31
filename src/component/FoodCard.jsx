@@ -63,8 +63,8 @@ import { CountContext } from "../context/CartContext";
 function FoodCards() {
   
   const [search, setSearch] = React.useState("chicken")
-  const [meal, setMeal] = React.useState([])
-  const {state, dispatch} = useContext(CountContext)
+  // const [meal, setMeal] = React.useState([])
+  const {state, dispatch, meal, setMeal} = useContext(CountContext)
 
   // useEffect(() => {
   //   const fetchMeals = async () => {
