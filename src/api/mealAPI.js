@@ -7,3 +7,11 @@ export const getMeal = async(mealname) => {
 
     return response.data.meals || [];
 }
+
+export const getMealsByCategory = async (category) => {
+  const response = await axios.get(
+    `${BASE_URL}/filter.php?c=${category}`
+  );
+
+  return response.data.meals || [];
+};

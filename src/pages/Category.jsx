@@ -1,55 +1,45 @@
+
+import { useContext } from "react";
+import { CountContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
+
+// ];
 const categories = [
   {
     id: 1,
-    name: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400",
+    name: "beef",
+    image: "https://images.unsplash.com/photo-1558030006-450675393462?w=400",
   },
   {
     id: 2,
-    name: "Pizza",
-    image:
-      "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400",
+    name: "Chicken",
+    image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400",
   },
   {
     id: 3,
-    name: "Chicken",
-    image:
-      "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400",
+    name: "Dessert",
+    image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400",
   },
   {
     id: 4,
     name: "Pasta",
-    image:
-      "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400",
+    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400",
   },
   {
     id: 5,
-    name: "Salad",
-    image:
-      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+    name: "Seafood",
+    image: "https://images.unsplash.com/photo-1559847844-5315695dadae?w=400",
   },
   {
     id: 6,
-    name: "Dessert",
-    image:
-      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400",
-  },
-  {
-    id: 7,
-    name: "Drinks",
-    image:
-      "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?w=400",
-  },
-  {
-    id: 8,
-    name: "Sea Food",
-    image:
-      "https://images.unsplash.com/photo-1559847844-5315695dadae?w=400",
+    name: "Vegetarian",
+    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
   },
 ];
 
 function Category() {
+
+  const {state, dispatch} = useContext(CountContext)
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -73,7 +63,12 @@ function Category() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
 
           {categories.map((item) => (
+            <Link to="/foodcard" >
             <div
+              onClick={() => dispatch({
+                type: "SET_CATEGORY",
+                payload: item.name
+              })}
               key={item.id}
               className="group bg-orange-50 rounded-3xl p-6 cursor-pointer hover:bg-orange-500 transition-all duration-300 hover:-translate-y-2 shadow-sm hover:shadow-xl"
             >
@@ -93,6 +88,7 @@ function Category() {
                 Explore Delicious {item.name}
               </p>
             </div>
+            </Link>
           ))}
 
         </div>

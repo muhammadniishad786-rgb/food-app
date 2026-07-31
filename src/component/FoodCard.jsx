@@ -1,6 +1,6 @@
 import { Heart, ShoppingCart, Star, Clock } from "lucide-react";
 import React, { useContext, useEffect, useState } from "react";
-import { getMeal } from "../api/mealAPI";
+import { getMeal, getMealsByCategory } from "../api/mealAPI";
 import { CountContext } from "../context/CartContext";
 
 // const foods = [
@@ -61,18 +61,29 @@ import { CountContext } from "../context/CartContext";
 // ];
 
 function FoodCards() {
-
+  
+  const [search, setSearch] = React.useState("chicken")
   const [meal, setMeal] = React.useState([])
   const {state, dispatch} = useContext(CountContext)
 
+  // useEffect(() => {
+  //   const fetchMeals = async () => {
+  //     const data = await getMeal(search);
+  //     setMeal(data)
+      
+  //   };
+  //   fetchMeals()
+  // }, []);
+
   useEffect(() => {
     const fetchMeals = async () => {
-      const data = await getMeal("pizza");
+      const data = await getMealsByCategory(state.selectedCategory);
       setMeal(data)
       
     };
     fetchMeals()
   }, []);
+  console.log(meal);
   
   return (
     <section className="py-20 bg-gray-50">

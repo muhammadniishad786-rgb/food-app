@@ -64,6 +64,12 @@ export const UsageReducer = (state, action) => {
             
         }
         
+    case "SET_CATEGORY" :
+      return{
+        ...state,
+        selectedCategory: action.payload
+      }
+      
     default:
       return state;
   }
@@ -71,3 +77,6 @@ export const UsageReducer = (state, action) => {
 
   
 };
+
+
+// "Keep all the existing properties in the state, and only change the property I specify."

@@ -8,6 +8,7 @@ export function CartContext({children}) {
 
     const initialState = {
         cart: [],
+        selectedCategory: "chicken"
     }
     const [state, dispatch] = useReducer(UsageReducer, initialState);
     
