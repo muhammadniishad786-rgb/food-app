@@ -48,7 +48,7 @@ function Navbar() {
           </Link>
 
           <Link
-            to={"/foodcard"}
+            to={"/foodcart"}
             className="text-gray-700 hover:text-orange-500 font-medium transition"
           >
             Menu

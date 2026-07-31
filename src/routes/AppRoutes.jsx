@@ -10,6 +10,8 @@ import Login from '../pages/authentication/Login'
 import AuthLayout from '../layouts/AuthLayout'
 import ProtectedRoute from './ProtectedRoute'
 import Cart from '../pages/Cart'
+import FoodCart from '../pages/FoodCart'
+import PopularDishes from '../pages/PopularDishes'
 
 function AppRoutes() {
   return (
@@ -21,6 +23,8 @@ function AppRoutes() {
          <Route index element={<Home /> } />
          <Route path="catogery" element={<Category /> } />
          <Route path="foodcard" element={<FoodCards />} />
+         <Route path='foodcart' element={<FoodCart />} />
+         <Route path='pupulardishes' element={<PopularDishes />} />
          <Route path="cart" element={<Cart />} />
         </Route>
         </Route>

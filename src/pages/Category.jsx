@@ -63,7 +63,7 @@ function Category() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
 
           {categories.map((item) => (
-            <Link to="/foodcard" >
+            <Link to="/foodcart" >
             <div
               onClick={() => dispatch({
                 type: "SET_CATEGORY",
