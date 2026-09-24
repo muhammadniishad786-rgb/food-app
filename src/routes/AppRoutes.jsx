@@ -12,6 +12,7 @@ import ProtectedRoute from './ProtectedRoute'
 import Cart from '../pages/Cart'
 import FoodCart from '../pages/FoodCart'
 import PopularDishes from '../pages/PopularDishes'
+import About from '../pages/About'
 
 function AppRoutes() {
   return (
@@ -26,6 +27,7 @@ function AppRoutes() {
          <Route path='foodcart' element={<FoodCart />} />
          <Route path='pupulardishes' element={<PopularDishes />} />
          <Route path="cart" element={<Cart />} />
+         <Route path="about" element={<About />} />
         </Route>
         </Route>
 

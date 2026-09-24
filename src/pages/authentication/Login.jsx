@@ -12,6 +12,8 @@ function Login() {
 
   const onsubmit = (data) => {
     const users = JSON.parse(localStorage.getItem("users"));
+    console.log(users);
+    
 
     const user = users.find((user) => {
       return data.email === user.email && data.password === user.password;

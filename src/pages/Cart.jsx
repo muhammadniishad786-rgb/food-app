@@ -2,6 +2,7 @@ import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 import { useContext } from "react";
 import { CountContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function Cart() {
   const { state, dispatch } = useContext(CountContext);

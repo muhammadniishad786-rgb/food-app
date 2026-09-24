@@ -60,12 +60,12 @@ function Navbar() {
           >
             Category
           </Link>
-          <a
-            href="#"
+          <Link
+            to={"/about"}
             className="text-gray-700 hover:text-orange-500 font-medium transition"
           >
             About
-          </a>
+          </Link>
 
           <a
             href="#"

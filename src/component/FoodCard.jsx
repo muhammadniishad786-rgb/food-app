@@ -4,7 +4,7 @@ import { getMealBySeach, getMealsByCategory } from "../api/mealAPI";
 import { CountContext } from "../context/CartContext";
 
 function FoodCards({limit}) {
-  const { state, dispatch, meal, setMeal, isSearching, setIsSearching } = useContext(CountContext);  
+  const { state, meal, dispatch, setMeal, isSearching, setIsSearching , selectedCategory} = useContext(CountContext);  
 
   useEffect(() => {
     if(isSearching) return;
