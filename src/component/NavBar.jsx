@@ -67,12 +67,12 @@ function Navbar() {
             About
           </Link>
 
-          <a
-            href="#"
+          <Link
+            to={"/contact"}
             className="text-gray-700 hover:text-orange-500 font-medium transition"
           >
             Contact
-          </a>
+          </Link>
         </nav>
 
         {/* Desktop Right */}

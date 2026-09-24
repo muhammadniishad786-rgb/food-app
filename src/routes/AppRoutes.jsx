@@ -13,6 +13,7 @@ import Cart from '../pages/Cart'
 import FoodCart from '../pages/FoodCart'
 import PopularDishes from '../pages/PopularDishes'
 import About from '../pages/About'
+import Contact from '../pages/Contact'
 
 function AppRoutes() {
   return (
@@ -28,6 +29,7 @@ function AppRoutes() {
          <Route path='pupulardishes' element={<PopularDishes />} />
          <Route path="cart" element={<Cart />} />
          <Route path="about" element={<About />} />
+         <Route path="contact" element={<Contact />} />
         </Route>
         </Route>
 
